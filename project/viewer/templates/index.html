@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    crossorigin="anonymous" />
+</head>
+
+<body>
+  <header>
+    <!-- place navbar here -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#!"><strong>Blogy</strong></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+            class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">SignUp</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">SignIn</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+            <!-- <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                      <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                      <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Blog</a></li> -->
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% if messages %}
+    {% for i in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>{{i}}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </header>
+  <main>
+    <class="py-5 bg-light border-bottom mb-4">
+    <div class="container">
+        <div class="text-center my-5 ">
+            <h1 class=" dispaly-1">Welcome to Blogy</h1>
+            <p class="lead mb-0">Share your thoughts</p>
+        </div>
+    </div>
+
+
+
+    <div class="row row-cols-1 row-cols-md-3 g-4 m-3 d-flex flex-row justify-content-center align-items-center">
+      {% for i in blogs1 %}
+      <div class="col">
+        <div class="card h-100">
+          <img src="{{i.image.url}}" class="card-img-top" alt="Skyscrapers"/>
+          <div class="card-body">
+            <h5 class="card-title">{{i.title}}</h5>
+            <p class="card-text"> {{ i.blog|truncatewords:50 }}
+            </p>
+            <a href="{% url 'blog_detail' i.id %}" class="btn btn-primary">Read More</a>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">By: {{i.user}}</small><br>
+            <small class="text-muted">On: {{i.date}}</small>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+
+
+  </main>
+  <footer style="background-color: rgb(180, 176, 176);">
+    <!-- place footer here --> <div class="container">
+    <div class="row">
+      <!-- About Section -->
+    
+    <div class="row">
+      <div class="col text-center">
+        <p class="mb-0">&copy; 2024 Hubaib. All Rights Reserved.</p>
+      </div>
+    </div>
+  </div>
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
